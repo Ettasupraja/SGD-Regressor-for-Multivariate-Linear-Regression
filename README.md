@@ -8,10 +8,14 @@ To write a program to predict the price of the house and number of occupants in 
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+1. Start
+2.Data Preparation
+3.Hypothesis Definition
+4.Cost Function
+5.Parameter Update Rule
+6.Iterative Training
+7.Model Evaluation
+8.End 
 
 ## Program:
 ```
@@ -33,97 +37,36 @@ from sklearn.preprocessing import StandardScaler
 data=fetch_california_housing()
 print(data)
 
-{'data': array([[   8.3252    ,   41.        ,    6.98412698, ...,    2.55555556,
-          37.88      , -122.23      ],
-       [   8.3014    ,   21.        ,    6.23813708, ...,    2.10984183,
-          37.86      , -122.22      ],
-       [   7.2574    ,   52.        ,    8.28813559, ...,    2.80225989,
-          37.85      , -122.24      ],
-       ...,
-       [   1.7       ,   17.        ,    5.20554273, ...,    2.3256351 ,
-          39.43      , -121.22      ],
-       [   1.8672    ,   18.        ,    5.32951289, ...,    2.12320917,
-          39.43      , -121.32      ],
-       [   2.3886    ,   16.        ,    5.25471698, ...,    2.61698113,
-          39.37      , -121.24      ]]), 'target': array([4.526, 3.585, 3.521, ..., 0.923, 0.847, 0.894]), 'frame': None, 'target_names': ['MedHouseVal'], 'feature_names': ['MedInc', 'HouseAge', 'AveRooms', 'AveBedrms', 'Population', 'AveOccup', 'Latitude', 'Longitude'], 'DESCR': '.. _california_housing_dataset:\n\nCalifornia Housing dataset\n--------------------------\n\n**Data Set Characteristics:**\n\n    :Number of Instances: 20640\n\n    :Number of Attributes: 8 numeric, predictive attributes and the target\n\n    :Attribute Information:\n        - MedInc        median income in block group\n        - HouseAge      median house age in block group\n        - AveRooms      average number of rooms per household\n        - AveBedrms     average number of bedrooms per household\n        - Population    block group population\n        - AveOccup      average number of household members\n        - Latitude      block group latitude\n        - Longitude     block group longitude\n\n    :Missing Attribute Values: None\n\nThis dataset was obtained from the StatLib repository.\nhttps://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html\n\nThe target variable is the median house value for California districts,\nexpressed in hundreds of thousands of dollars ($100,000).\n\nThis dataset was derived from the 1990 U.S. census, using one row per census\nblock group. A block group is the smallest geographical unit for which the U.S.\nCensus Bureau publishes sample data (a block group typically has a population\nof 600 to 3,000 people).\n\nA household is a group of people residing within a home. Since the average\nnumber of rooms and bedrooms in this dataset are provided per household, these\ncolumns may take surprisingly large values for block groups with few households\nand many empty houses, such as vacation resorts.\n\nIt can be downloaded/loaded using the\n:func:`sklearn.datasets.fetch_california_housing` function.\n\n.. topic:: References\n\n    - Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,\n      Statistics and Probability Letters, 33 (1997) 291-297\n'}
+![image](https://github.com/user-attachments/assets/f1070a17-9af8-4790-a309-7a7d3e8c58a2)
+
 
 df=pd.DataFrame(data.data,columns=data.feature_names)
 df['target']=data.target
 print(df.head())
 
-MedInc  HouseAge  AveRooms  AveBedrms  Population  AveOccup  Latitude  \
-0  8.3252      41.0  6.984127   1.023810       322.0  2.555556     37.88   
-1  8.3014      21.0  6.238137   0.971880      2401.0  2.109842     37.86   
-2  7.2574      52.0  8.288136   1.073446       496.0  2.802260     37.85   
-3  5.6431      52.0  5.817352   1.073059       558.0  2.547945     37.85   
-4  3.8462      52.0  6.281853   1.081081       565.0  2.181467     37.85   
+![image](https://github.com/user-attachments/assets/7001e5ef-4a4f-48bc-918e-3aeb52d26ed5)
 
-   Longitude  target  
-0    -122.23   4.526  
-1    -122.22   3.585  
-2    -122.24   3.521  
-3    -122.25   3.413
 
 df.info()
 
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 20640 entries, 0 to 20639
-Data columns (total 9 columns):
- #   Column      Non-Null Count  Dtype  
----  ------      --------------  -----  
- 0   MedInc      20640 non-null  float64
- 1   HouseAge    20640 non-null  float64
- 2   AveRooms    20640 non-null  float64
- 3   AveBedrms   20640 non-null  float64
- 4   Population  20640 non-null  float64
- 5   AveOccup    20640 non-null  float64
- 6   Latitude    20640 non-null  float64
- 7   Longitude   20640 non-null  float64
- 8   target      20640 non-null  float64
-dtypes: float64(9)
-memory usage: 1.4 MB
+![image](https://github.com/user-attachments/assets/e5abc107-91d8-4d29-b869-dbed3aac1502)
+
 
 X=df.drop(columns=['AveOccup','target'])
-
 X.info()
 
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 20640 entries, 0 to 20639
-Data columns (total 7 columns):
- #   Column      Non-Null Count  Dtype  
----  ------      --------------  -----  
- 0   MedInc      20640 non-null  float64
- 1   HouseAge    20640 non-null  float64
- 2   AveRooms    20640 non-null  float64
- 3   AveBedrms   20640 non-null  float64
- 4   Population  20640 non-null  float64
- 5   Latitude    20640 non-null  float64
- 6   Longitude   20640 non-null  float64
-dtypes: float64(7)
-memory usage: 1.1 MB
+![image](https://github.com/user-attachments/assets/509f40e0-680c-49bb-a0de-35b0a9031502)
+
 
 Y=df[['AveOccup','target']]
-
 Y.info()
 
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 20640 entries, 0 to 20639
-Data columns (total 2 columns):
- #   Column    Non-Null Count  Dtype  
----  ------    --------------  -----  
- 0   AveOccup  20640 non-null  float64
- 1   target    20640 non-null  float64
-dtypes: float64(2)
-memory usage: 322.6 K
+![image](https://github.com/user-attachments/assets/d23f0375-a13e-4eb8-abe8-af438ab1d5fb)
 
-X.head()
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=1)
+x.head()
 
-MedInc	HouseAge	AveRooms	AveBedrms	Population	Latitude	Longitude
-0	8.3252	41.0	6.984127	1.023810	322.0	37.88	-122.23
-1	8.3014	21.0	6.238137	0.971880	2401.0	37.86	-122.22
-2	7.2574	52.0	8.288136	1.073446	496.0	37.85	-122.24
-3	5.6431	52.0	5.817352	1.073059	558.0	37.85	-122.25
-4	3.8462	52.0	6.281853	1.081081	565.0	37.85	-122.25
+![image](https://github.com/user-attachments/assets/ad83fda3-71cd-4ec6-992a-5c429a1fe209)
 
 scaler_x=StandardScaler()
 scaler_y=StandardScaler()
