@@ -18,7 +18,7 @@ To write a program to predict the price of the house and number of occupants in 
 8.End 
 
 ## Program:
-``
+```
 /*
 Program to implement the multivariate linear regression model for predicting the price of the house and number of occupants in the house with SGD regressor.
 Developed by: ETTA SUPRAJA
@@ -36,7 +36,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler
 data=fetch_california_housing()
 print(data)
-``
+```
 ### OUTPUT:
 
 ![Screenshot 2024-09-11 135010](https://github.com/user-attachments/assets/3f1ac0d8-627b-49d2-bc95-dd597c6feade)
@@ -44,7 +44,7 @@ print(data)
 df=pd.DataFrame(data.data,columns=data.feature_names)
 df['target']=data.target
 print(df.head())
-``
+```
 ### OUTPUT:
 ![Screenshot 2024-09-11 135218](https://github.com/user-attachments/assets/c7474b7f-9124-4fdc-b485-898851d9fd5c)
 ```
@@ -101,13 +101,13 @@ y_pred=scaler_y.inverse_transform(y_pred)
 y_test=scaler_y.inverse_transform(y_test)
 mse=mean_squared_error(y_test,y_pred)
 print("Mean Squared Error:",mse)
-``
+```
 ### OUTPUT:
 ![Screenshot 2024-09-11 205502](https://github.com/user-attachments/assets/81a7f3b0-5e20-4bb8-b410-420cf603f73d)
 
-`
+```
 print("\nPredictions:\n", y_pred[:5])
-``
+```
 ### OUTPUT:
 ![Screenshot 2024-09-11 205545](https://github.com/user-attachments/assets/93107a9f-43c0-4924-adff-c31a5dc6c122)
 
