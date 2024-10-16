@@ -8,6 +8,7 @@ To write a program to predict the price of the house and number of occupants in 
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
+```
 1. Start
 2.Data Preparation
 3.Hypothesis Definition
@@ -16,7 +17,7 @@ To write a program to predict the price of the house and number of occupants in 
 6.Iterative Training
 7.Model Evaluation
 8.End 
-
+```
 ## Program:
 ```
 /*
@@ -34,6 +35,8 @@ from sklearn.multioutput import MultiOutputRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler
+
+
 data=fetch_california_housing()
 print(data)
 ```
