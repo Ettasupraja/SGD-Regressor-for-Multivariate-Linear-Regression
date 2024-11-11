@@ -64,14 +64,15 @@ df.info()
 X=df.drop(columns=['AveOccup','target'])
 X.info()
 ```
+![image](https://github.com/user-attachments/assets/11dd6292-1b30-45bc-8340-3dd671f74cc2)
 
-![image](https://github.com/user-attachments/assets/aa82595b-63fa-41b1-bff5-b53ee393ebed)
 
 ```
 Y=df[['AveOccup','target']]
 Y.info()
 ```
-![image](https://github.com/user-attachments/assets/d020a24b-fb66-4d14-a905-5254be2d3357)
+![image](https://github.com/user-attachments/assets/075620a1-2139-4ec7-9dce-5b619f57f643)
+
 
 ```
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=1)
