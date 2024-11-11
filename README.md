@@ -42,7 +42,8 @@ data=fetch_california_housing()
 print(data)
 ```
 
-![image](https://github.com/user-attachments/assets/dbe8b2e4-c28a-4884-b8a2-7f4c76de4e61)
+
+![image](https://github.com/user-attachments/assets/cfd18574-1313-47b7-b37f-d6876079890d)
 
 
 ```
@@ -51,13 +52,13 @@ df['target']=data.target
 print(df.head())
 ```
 
-![image](https://github.com/user-attachments/assets/587eeb60-9285-4923-829a-b62d971c8bd1)
+![image](https://github.com/user-attachments/assets/bfae3079-4b83-436a-9fcb-770f1ade7bf1)
 
 ```
 df.info()
 ```
 
-![image](https://github.com/user-attachments/assets/20964e82-1a7e-4ff8-9d6a-87c137d8326c)
+![image](https://github.com/user-attachments/assets/9327e6ff-92cf-450d-a759-e8add1932c8f)
 
 ```
 X=df.drop(columns=['AveOccup','target'])
