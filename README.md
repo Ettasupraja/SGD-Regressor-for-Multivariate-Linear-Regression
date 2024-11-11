@@ -41,42 +41,41 @@ data=fetch_california_housing()
 print(data)
 ```
 
+![image](https://github.com/user-attachments/assets/dbe8b2e4-c28a-4884-b8a2-7f4c76de4e61)
 
-![Screenshot 2024-09-11 135010](https://github.com/user-attachments/assets/3f1ac0d8-627b-49d2-bc95-dd597c6feade)
+
 ```
 df=pd.DataFrame(data.data,columns=data.feature_names)
 df['target']=data.target
 print(df.head())
 ```
 
-![Screenshot 2024-09-11 135218](https://github.com/user-attachments/assets/c7474b7f-9124-4fdc-b485-898851d9fd5c)
+![image](https://github.com/user-attachments/assets/587eeb60-9285-4923-829a-b62d971c8bd1)
+
 ```
 df.info()
 ```
 
-![Screenshot 2024-09-11 205035](https://github.com/user-attachments/assets/e5683613-932d-463d-bee9-d7d81df29d36)
+![image](https://github.com/user-attachments/assets/20964e82-1a7e-4ff8-9d6a-87c137d8326c)
 
 ```
 X=df.drop(columns=['AveOccup','target'])
 X.info()
 ```
 
-![Screenshot 2024-09-11 205140](https://github.com/user-attachments/assets/1f7bbfe6-86cb-4616-92d7-a1bceecc1b6c)
+![image](https://github.com/user-attachments/assets/aa82595b-63fa-41b1-bff5-b53ee393ebed)
 
 ```
 Y=df[['AveOccup','target']]
 Y.info()
 ```
-### OUTPUT:
-![Screenshot 2024-09-11 205219](https://github.com/user-attachments/assets/d7c4edcc-eb57-4bfb-82b3-866f742465e0)
+![image](https://github.com/user-attachments/assets/d020a24b-fb66-4d14-a905-5254be2d3357)
 
 ```
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=1)
 x.head()
 ```
-
-
-![Screenshot 2024-09-11 205305](https://github.com/user-attachments/assets/fd4a700d-e9d3-49b6-8a95-9f845d225dce)
+![image](https://github.com/user-attachments/assets/fa10a329-ca9b-4749-aa1a-ffff96e8a54c)
 
 ```
 scaler_x=StandardScaler()
@@ -88,7 +87,7 @@ y_test=scaler_y.transform(y_test)
 print(x_train)
 ```
 
-![Screenshot 2024-09-11 205345](https://github.com/user-attachments/assets/59ab31a2-ad69-45fc-ac60-9856f6a0015c)
+![image](https://github.com/user-attachments/assets/cceee29a-5dad-4139-8697-2b68bcbf8163)
 
 ```
 sgd=SGDRegressor(max_iter=1000,tol=1e-3)
@@ -96,7 +95,7 @@ multi_output_sgd=MultiOutputRegressor(sgd)
 multi_output_sgd.fit(x_train,y_train)
 ```
 
-![Screenshot 2024-09-11 205430](https://github.com/user-attachments/assets/85223de9-6e6e-431e-a1b8-651e827a97ec)
+![image](https://github.com/user-attachments/assets/b1f8f9f4-b2e1-42fe-ac5e-111a6b8a47db)
 
 ```
 y_pred=multi_output_sgd.predict(x_test)
@@ -106,13 +105,14 @@ mse=mean_squared_error(y_test,y_pred)
 print("Mean Squared Error:",mse)
 ```
 
-![Screenshot 2024-09-11 205502](https://github.com/user-attachments/assets/81a7f3b0-5e20-4bb8-b410-420cf603f73d)
+![image](https://github.com/user-attachments/assets/75118b0e-96e1-4815-8603-94973db0a2b8)
 
 ```
 print("\nPredictions:\n", y_pred[:5])
 ```
 
-![Screenshot 2024-09-11 205545](https://github.com/user-attachments/assets/93107a9f-43c0-4924-adff-c31a5dc6c122)
+![image](https://github.com/user-attachments/assets/4ccc1381-ebdd-45a7-b6cd-20e37b2dd35e)
+
 
 
 ## Result:
